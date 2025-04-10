@@ -1,0 +1,6 @@
+.local/*
+
+# 文件
+**/.env
+**/*.log
+**/.DS_Store

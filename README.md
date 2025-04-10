@@ -1,1 +1,1 @@
-# 250300-go-mod-murl
+# 250300-go-mod-demo
