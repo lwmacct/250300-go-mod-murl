@@ -6,6 +6,8 @@ import (
 )
 
 type Parse struct {
+	Raw *url.URL
+
 	Scheme   string
 	Host     string
 	Port     string
@@ -43,4 +45,12 @@ func NewParse(URL string) (*Parse, error) {
 	info.Password, _ = p.User.Password()
 
 	return info, nil
+}
+
+func (p *Parse) GetBaseURL() string {
+	return fmt.Sprintf("%s://%s%s", p.Scheme, p.Host, p.Path)
+}
+
+func (p *Parse) GetNotAuthURL() string {
+	return fmt.Sprintf("%s://%s%s%s", p.Scheme, p.Host, p.Path, p.RawQuery)
 }
