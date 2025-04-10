@@ -15,6 +15,7 @@ type Parse struct {
 	Password string
 
 	NotAuthURL string
+	BaseURL    string
 }
 
 // ParseAuth 解析 URL 中的用户名和密码, 去除并返回 URL, Username, Password
@@ -35,6 +36,8 @@ func NewParse(URL string) (*Parse, error) {
 		Path:     p.Path,
 		RawQuery: p.RawQuery,
 	}
+
+	info.BaseURL = fmt.Sprintf("%s://%s%s", p.Scheme, p.Host, p.Path)
 	info.NotAuthURL = fmt.Sprintf("%s://%s%s%s", p.Scheme, p.Host, p.Path, p.RawQuery)
 	info.Username = p.User.Username()
 	info.Password, _ = p.User.Password()
